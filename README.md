@@ -144,3 +144,9 @@ Citation metadata are provided in `CITATION.cff`. A repository/release DOI can b
 Hacettepe University, Department of Chemistry  
 Email: gulbinkurtay@hacettepe.edu.tr  
 ORCID: https://orcid.org/0000-0003-0920-8409
+
+## License
+
+DSSCFlow source code is distributed under the BSD 3-Clause License; see `LICENSE`.
+
+Author-generated DSSC16 computational datasets are provided under CC BY 4.0. Third-party illumination spectra retain the terms and rights of their original providers; see `DATA_LICENSES.md` for details.
