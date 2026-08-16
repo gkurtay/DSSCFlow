@@ -1,4 +1,4 @@
-\# Data licensing and provenance
+# Data licensing and provenance
 
 
 
@@ -6,7 +6,7 @@ DSSCFlow source code is licensed separately under the BSD 3-Clause License; see 
 
 
 
-\## DSSC16 author-generated computational data
+## DSSC16 author-generated computational data
 
 
 
@@ -22,7 +22,7 @@ When reusing these data, please cite the associated DSSC16 publication and DSSCF
 
 
 
-\## Third-party illumination data
+## Third-party illumination data
 
 
 
@@ -38,11 +38,11 @@ This applies in particular to:
 
 
 
-\- the ASTM G173 / AM1.5G reference solar spectrum;
+- the ASTM G173 / AM1.5G reference solar spectrum;
 
-\- CIE illuminant and spectral-distribution data; and
+- CIE illuminant and spectral-distribution data; and
 
-\- any other externally sourced illumination spectra identified in the associated publication or metadata.
+- any other externally sourced illumination spectra identified in the associated publication or metadata.
 
 
 
@@ -50,7 +50,7 @@ Users wishing to reuse or redistribute the underlying third-party spectral data 
 
 
 
-\## Derived results
+## Derived results
 
 
 
