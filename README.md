@@ -1,5 +1,7 @@
 # DSSCFlow 1.0.0
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21968610.svg)](https://doi.org/10.5281/zenodo.21968610)
+
 DSSCFlow is an installable Python research-software package for **source-conditioned optical screening of molecular dye-sensitized solar-cell sensitizers**. It integrates TD-DFT transition data with illumination spectra to reconstruct molecular absorption, calculate photon-accessibility descriptors, quantify complete-factorial structure effects, test source/broadening robustness, and perform transparent Pareto decision analysis.
 
 The first public release, DSSCFlow 1.0.0, provides two interfaces to the same numerical core:
@@ -135,8 +137,11 @@ The v1.0.0 test suite includes numerical publication-regression tests, GUI-backe
 
 ## Citation
 
-Citation metadata are provided in `CITATION.cff`. A repository/release DOI can be added after archiving the release.
+DSSCFlow v1.0.0 has a persistent Zenodo DOI:
 
+**10.5281/zenodo.21968610**
+
+If you use DSSCFlow, please cite the software release and the associated DSSC16 article. Machine-readable citation metadata are provided in `CITATION.cff`.
 
 ## Author and contact
 
