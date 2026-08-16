@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DSSCFlow</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>DSSCFlow <span id="versionBadge">v1.0.0</span></h1>
+    <p>Source-conditioned optical screening and molecular sensitizer decision analysis</p>
+    <p class="author-line">Developed by <strong>Gülbin Kurtay</strong> · Hacettepe University, Department of Chemistry · <a href="mailto:gulbinkurtay@hacettepe.edu.tr">gulbinkurtay@hacettepe.edu.tr</a></p>
+  </div>
+  <div class="status-pill" id="healthStatus">local interface</div>
+</header>
+
+<main class="layout">
+  <aside class="controls panel">
+    <h2>Analysis setup</h2>
+    <label>Dataset</label>
+    <select id="mode">
+      <option value="demo">DSSC16 demonstration dataset</option>
+      <option value="upload">Upload my data</option>
+    </select>
+
+    <div id="uploadBlock" class="hidden">
+      <label>TD-DFT transition CSV <span class="required">required</span></label>
+      <input type="file" id="transitionsFile" accept=".csv,text/csv">
+      <label>Illumination-source CSV files <span class="required">required</span></label>
+      <input type="file" id="sourcesFiles" multiple accept=".csv,text/csv">
+      <details>
+        <summary>Optional Pareto inputs</summary>
+        <label>Ground-state descriptors CSV</label>
+        <input type="file" id="descriptorsFile" accept=".csv,text/csv">
+        <label>IFCT results CSV</label>
+        <input type="file" id="ifctFile" accept=".csv,text/csv">
+        <label>Fragment-TDM summary CSV</label>
+        <input type="file" id="tdmFile" accept=".csv,text/csv">
+      </details>
+      <p class="hint">Transition columns: system, ID, Donor, Aux, Bridge, Anchor, wavelength_nm, oscillator_strength. Source columns: wavelength_nm, intensity.</p>
+    </div>
+
+    <label>Broadening widths / eV</label>
+    <div class="checkrow">
+      <label><input type="checkbox" class="widthCheck" value="0.20" checked> 0.20</label>
+      <label><input type="checkbox" class="widthCheck" value="0.30" checked> 0.30</label>
+      <label><input type="checkbox" class="widthCheck" value="0.40" checked> 0.40</label>
+    </div>
+
+    <label>Active broadening / eV</label>
+    <select id="activeSigma">
+      <option value="0.20">0.20</option>
+      <option value="0.30" selected>0.30</option>
+      <option value="0.40">0.40</option>
+    </select>
+
+    <label>Illumination source</label>
+    <select id="activeSource">
+      <option value="">auto-select first source</option>
+    </select>
+
+    <div class="twocol">
+      <div>
+        <label>Concentration / M</label>
+        <input type="number" id="concentration" value="0.00001" min="0" step="0.000001">
+      </div>
+      <div>
+        <label>Path length / cm</label>
+        <input type="number" id="pathLength" value="1.0" min="0" step="0.1">
+      </div>
+    </div>
+
+    <label>Dyes displayed in spectrum</label>
+    <input type="text" id="selectedIds" value="D08,D14,D16" placeholder="e.g. D08,D14,D16">
+
+    <button id="analyzeBtn" class="primary">Run analysis</button>
+    <button id="exportBtn" class="secondary" disabled>Export analysis ZIP</button>
+    <div id="message" class="message"></div>
+  </aside>
+
+  <section class="content">
+    <div class="metric-grid" id="metricGrid">
+      <div class="metric"><span>Dyes</span><strong>—</strong></div>
+      <div class="metric"><span>Transitions</span><strong>—</strong></div>
+      <div class="metric"><span>Sources</span><strong>—</strong></div>
+      <div class="metric"><span>Active σ</span><strong>—</strong></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="overview">Overview</button>
+      <button class="tab" data-tab="spectra">Spectra</button>
+      <button class="tab" data-tab="photon">Photon accessibility</button>
+      <button class="tab" data-tab="factorial">Factorial effects</button>
+      <button class="tab" data-tab="pareto">Pareto</button>
+      <button class="tab" data-tab="robustness">Robustness</button>
+    </div>
+
+    <div id="overview" class="tabpane active panel">
+      <h2>Project overview</h2>
+      <p>DSSCFlow integrates molecular transition data with illumination spectra, then applies source-conditioned photon metrics, factorial contrasts, robustness analysis and Pareto screening.</p>
+      <div class="about-card">
+        <div><span>Author</span><strong>Gülbin Kurtay</strong></div>
+        <div><span>Affiliation</span><strong>Hacettepe University, Department of Chemistry</strong></div>
+        <div><span>Contact</span><strong><a href="mailto:gulbinkurtay@hacettepe.edu.tr">gulbinkurtay@hacettepe.edu.tr</a></strong></div>
+        <div><span>ORCID</span><strong><a href="https://orcid.org/0000-0003-0920-8409" target="_blank" rel="noopener">0000-0003-0920-8409</a></strong></div>
+      </div>
+      <div id="checksBox" class="checks"></div>
+      <h3>Top photon-accessibility ranking</h3>
+      <div id="rankingPreview"></div>
+    </div>
+
+    <div id="spectra" class="tabpane panel">
+      <div class="pane-head"><h2>Molecular absorption</h2><span>Normalized shape view</span></div>
+      <svg id="spectraChart" class="chart" viewBox="0 0 1000 440"></svg>
+      <h3>Calculated λmax</h3>
+      <div id="lambdaTable"></div>
+    </div>
+
+    <div id="photon" class="tabpane panel">
+      <div class="pane-head"><h2>Photon-accessibility ranking</h2><span id="photonSub"></span></div>
+      <div id="rankingBars" class="bars"></div>
+      <div id="rankingTable"></div>
+    </div>
+
+    <div id="factorial" class="tabpane panel">
+      <div class="pane-head"><h2>Main factorial effects on PCF</h2><span>high-level mean − low-level mean</span></div>
+      <div id="effectBars" class="effect-bars"></div>
+      <div id="effectTable"></div>
+    </div>
+
+    <div id="pareto" class="tabpane panel">
+      <div class="pane-head"><h2>Pareto screening</h2><span>PCF ↑, IFCT CT% ↑, λtotal ↓</span></div>
+      <svg id="paretoChart" class="chart" viewBox="0 0 1000 500"></svg>
+      <div id="paretoTable"></div>
+    </div>
+
+    <div id="robustness" class="tabpane panel">
+      <div class="pane-head"><h2>Source robustness</h2><span>active broadening</span></div>
+      <div id="robustnessTable"></div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div><strong>DSSCFlow v1.0.0</strong> · Gülbin Kurtay · Hacettepe University, Department of Chemistry · <a href="mailto:gulbinkurtay@hacettepe.edu.tr">gulbinkurtay@hacettepe.edu.tr</a></div>
+  <div>DSSCFlow runs locally in your browser and local Python process. Uploaded files are not sent to an external service.</div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

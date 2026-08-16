@@ -1,0 +1,5 @@
+DSSCFlow v1.0.0 release validation
+Automated source-tree tests: 8 passed
+Publication regression: PASS
+GUI backend and export checks: PASS
+Author-attribution checks: PASS

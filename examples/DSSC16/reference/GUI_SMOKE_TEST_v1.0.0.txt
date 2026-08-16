@@ -1,0 +1,8 @@
+DSSCFlow v1.0.0 local browser GUI smoke test
+- GET /api/health -> status=ok, version=1.0.0
+- packaged HTML/CSS/JavaScript interface -> PASS
+- bundled DSSC16 demonstration dataset -> PASS
+- 16 dyes / 480 transitions -> PASS
+- D08 AM1.5G ranking at sigma=0.30 eV -> PASS
+- numerical analysis ZIP export -> PASS
+- author/affiliation/email/ORCID display -> PASS

@@ -1,0 +1,26 @@
+{
+  "top_dye_by_source": {
+    "AM15G": "D08",
+    "CIEFL10": "D08",
+    "LEDB2": "D08",
+    "LEDB3": "D08",
+    "LEDB4": "D08"
+  },
+  "D08_PCF_sigma030": {
+    "AM15G": 0.41851687200605175,
+    "CIEFL10": 0.5815563739773348,
+    "LEDB2": 0.4702474880789593,
+    "LEDB3": 0.5297048844403681,
+    "LEDB4": 0.5573093170729174
+  },
+  "BTD_effect_positive_all_sources": true,
+  "robust_pareto_15_of_15": [
+    "D08",
+    "D14",
+    "D16"
+  ],
+  "checks": {
+    "D08_top_all_sources": true,
+    "robust_pareto_matches_publication": true
+  }
+}

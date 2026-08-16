@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dsscflow"
+version = "1.0.0"
+description = "Source-conditioned optical screening, factorial analysis, robustness and Pareto decision support for molecular DSSC sensitizers"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  {name = "Gülbin Kurtay", email = "gulbinkurtay@hacettepe.edu.tr"}
+]
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.0",
+  "typer>=0.12",
+  "rich>=13.0"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Chemistry"
+]
+
+[project.scripts]
+dsscflow = "dsscflow.cli:app"
+dsscflow-gui = "dsscflow.gui.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dsscflow = [
+  "gui/static/*.html",
+  "gui/static/*.css",
+  "gui/static/*.js",
+  "demo/DSSC16/data/*.csv",
+  "demo/DSSC16/light_sources/*.csv"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

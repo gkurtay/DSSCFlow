@@ -1,0 +1,90 @@
+:root {
+  --navy:#10264a;
+  --blue:#2463a9;
+  --cyan:#54a9c2;
+  --orange:#e77a2e;
+  --red:#b33a3a;
+  --green:#2e7d5a;
+  --paper:#f5f7fb;
+  --line:#d7dee9;
+  --ink:#1e293b;
+  --muted:#667085;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; background:var(--paper); color:var(--ink); }
+.topbar { background:linear-gradient(120deg,var(--navy),#173f73); color:white; padding:22px 34px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 8px rgba(0,0,0,.15); }
+.topbar h1 { margin:0 0 4px; font-size:30px; }
+.topbar h1 span { font-size:14px; font-weight:600; background:rgba(255,255,255,.16); padding:5px 9px; border-radius:14px; vertical-align:middle; }
+.topbar p { margin:0; opacity:.84; font-size:14px; }
+.topbar .author-line { margin-top:7px; font-size:12px; opacity:.9; }
+.topbar .author-line a { color:white; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.4); }
+.topbar .author-line a:hover { border-bottom-color:white; }
+.status-pill { border:1px solid rgba(255,255,255,.35); border-radius:20px; padding:8px 13px; font-size:13px; }
+.layout { display:grid; grid-template-columns:330px minmax(0,1fr); gap:20px; max-width:1500px; margin:22px auto; padding:0 20px; }
+.panel { background:white; border:1px solid var(--line); border-radius:12px; box-shadow:0 1px 3px rgba(20,40,70,.06); }
+.controls { padding:20px; align-self:start; position:sticky; top:16px; }
+h2 { color:var(--navy); margin-top:0; font-size:20px; }
+h3 { color:var(--navy); font-size:16px; margin-top:24px; }
+label { display:block; font-size:12px; font-weight:650; color:#344054; margin:14px 0 6px; }
+select,input[type=text],input[type=number],input[type=file] { width:100%; border:1px solid #cbd5e1; border-radius:7px; padding:9px; background:white; font:inherit; font-size:13px; }
+input[type=file] { padding:7px; }
+.checkrow { display:flex; gap:14px; border:1px solid #dbe2ec; padding:8px 10px; border-radius:7px; }
+.checkrow label { margin:0; font-weight:500; }
+.twocol { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+button { cursor:pointer; border:0; border-radius:8px; padding:10px 13px; font-weight:650; }
+.primary { width:100%; margin-top:18px; background:var(--navy); color:white; }
+.secondary { width:100%; margin-top:8px; background:#e9eef5; color:var(--navy); }
+button:disabled { opacity:.45; cursor:not-allowed; }
+.required { color:var(--red); font-weight:500; }
+.hint { font-size:11px; line-height:1.45; color:var(--muted); }
+details { margin-top:10px; border-top:1px solid #edf0f4; padding-top:10px; }
+summary { cursor:pointer; font-weight:650; color:var(--navy); font-size:12px; }
+.hidden { display:none !important; }
+.message { min-height:22px; font-size:12px; margin-top:10px; color:var(--muted); }
+.message.error { color:var(--red); }
+.message.ok { color:var(--green); }
+.content { min-width:0; }
+.metric-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:16px; }
+.metric { background:white; border:1px solid var(--line); border-radius:10px; padding:15px 17px; }
+.metric span { display:block; color:var(--muted); font-size:12px; }
+.metric strong { display:block; color:var(--navy); font-size:24px; margin-top:4px; }
+.tabs { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
+.tab { background:#e7edf6; color:#36506f; padding:9px 14px; }
+.tab.active { background:var(--navy); color:white; }
+.tabpane { display:none; padding:22px; min-height:420px; }
+.tabpane.active { display:block; }
+.pane-head { display:flex; align-items:baseline; justify-content:space-between; gap:16px; }
+.pane-head span { color:var(--muted); font-size:12px; }
+.chart { width:100%; height:auto; min-height:350px; background:#fbfcfe; border:1px solid #e4e9f1; border-radius:8px; }
+table { width:100%; border-collapse:collapse; margin-top:10px; font-size:12px; }
+th { background:#eef3f8; color:var(--navy); text-align:center; font-weight:700; padding:8px; border-bottom:1px solid #ccd7e4; }
+td { text-align:center; padding:7px; border-bottom:1px solid #edf0f4; }
+tr:hover td { background:#fafcff; }
+.bars { margin:16px 0 22px; }
+.bar-row { display:grid; grid-template-columns:48px 1fr 76px; gap:10px; align-items:center; margin:7px 0; font-size:12px; }
+.bar-track { height:18px; background:#edf1f6; border-radius:4px; overflow:hidden; }
+.bar-fill { height:100%; background:linear-gradient(90deg,var(--blue),var(--cyan)); }
+.effect-bars { margin:18px 0; }
+.effect-row { display:grid; grid-template-columns:80px 1fr 80px; gap:10px; align-items:center; margin:9px 0; font-size:12px; }
+.effect-track { height:20px; background:linear-gradient(90deg,#f2d2cc 0 49.7%,#cbd5e1 49.7% 50.3%,#d6e5f7 50.3%); position:relative; border-radius:4px; }
+.effect-fill { height:8px; position:absolute; top:6px; background:var(--blue); border-radius:4px; }
+.effect-fill.neg { background:var(--orange); }
+.about-card { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:16px 0 18px; padding:14px; border:1px solid #dbe4ef; border-radius:9px; background:#f8fafc; }
+.about-card div { min-width:0; }
+.about-card span { display:block; color:var(--muted); font-size:11px; margin-bottom:3px; }
+.about-card strong { display:block; color:var(--navy); font-size:12px; line-height:1.35; overflow-wrap:anywhere; }
+.about-card a { color:var(--blue); text-decoration:none; }
+.about-card a:hover { text-decoration:underline; }
+.checks { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px; margin:14px 0; }
+.check-card { border:1px solid #dbe4ef; border-radius:8px; padding:10px; font-size:12px; }
+.check-card.pass { border-left:4px solid var(--green); }
+.check-card.fail { border-left:4px solid var(--red); }
+footer { max-width:1500px; margin:0 auto 20px; padding:0 22px; color:#7a8699; font-size:11px; line-height:1.6; }
+footer a { color:#526a88; text-decoration:none; }
+footer a:hover { text-decoration:underline; }
+@media (max-width:950px) {
+  .layout { grid-template-columns:1fr; }
+  .controls { position:static; }
+  .metric-grid { grid-template-columns:repeat(2,1fr); }
+  .about-card { grid-template-columns:1fr; }
+}

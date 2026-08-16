@@ -1,0 +1,20 @@
+DSSCFlow v1.0.0 validation summary
+Date: 2026-08-16
+
+Automated source-tree test suite:
+  PYTHONPATH=src pytest -q
+  8 passed
+
+DSSC16 reproduce workflow:
+  D08 top under AM1.5G, CIE FL10, LED-B2, LED-B3 and LED-B4 at sigma=0.30 eV: PASS
+  Positive BTD PCF main effect under all five sources: PASS
+  Robust exact/epsilon Pareto set across 15 source/broadening scenarios: D08, D14, D16
+
+Local browser GUI checks:
+  /api/health: PASS
+  packaged HTML interface: PASS
+  bundled 16-dye / 480-transition DSSC16 analysis: PASS
+  numerical result ZIP export: PASS
+  author/affiliation/email/ORCID attribution: PASS
+
+The CLI and GUI call the same numerical analysis functions.
